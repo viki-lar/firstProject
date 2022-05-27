@@ -9,9 +9,10 @@ console.log("Привет, Мир!");
 console.log(typeof title);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
+console.log(screens.length);
 alert("Hello world!");
 
-/*Вывести в консоль тип данных значений переменных title, fullPrice, adaptive;
+/*
 Вывести в консоль длину строки из переменной screens
 Вывести в консоль “Стоимость верстки экранов (screenPrice) рублей/ долларов/гривен/юани” и “Стоимость разработки сайта (fullPrice) рублей/ долларов/гривен/юани”
 Привести строку screens к нижнему регистру и разбить строку на массив, вывести массив в консоль
