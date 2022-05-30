@@ -1,4 +1,6 @@
 "use strict";
+
+//вывод в консоль дней недели в зависимости от выбранного языка
 let lang = confirm("Выбор языка: русский?");
 let weekRus = [
   "Понедельник",
@@ -38,3 +40,12 @@ switch (true) {
 }
 
 console.log(arr[Number(!lang)]);
+
+// вывод должности в зависимости от имени
+
+let namePerson = prompt("Введите имя");
+namePerson == "Артем"
+  ? console.log("Директор", namePerson)
+  : namePerson == "Александр"
+  ? console.log("Преподаватель", namePerson)
+  : console.log("Студент", namePerson);
