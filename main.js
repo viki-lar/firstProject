@@ -1,7 +1,7 @@
 "use strict";
 
 //вывод в консоль дней недели в зависимости от выбранного языка
-let lang = confirm("Выбор языка: русский?");
+let lang = prompt("Выбор языка: ru или en");
 let weekRus = [
   "Понедельник",
   "Вторник",
@@ -20,26 +20,36 @@ let weekEng = [
   "Saturday",
   "Sunday",
 ];
+
 let arr = [
-  "Понедельник, Вторник,  Среда,  Четверг,  Пятница,  Суббота,  Воскресеньe",
-  "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+  ["ru", weekRus],
+  ["en", weekEng],
 ];
 
-if (lang == true) {
+if (lang == "ru") {
   console.log(weekRus);
-} else {
+} else if (lang == "en") {
   console.log(weekEng);
+} else {
+  console.log("Ошибка ввода");
 }
 
 switch (true) {
-  case lang == true:
+  case lang == "ru":
     console.log(weekRus);
     break;
-  default:
+  case lang == "en":
     console.log(weekEng);
+    break;
+  default:
+    console.log("Ошибка ввода");
 }
 
-console.log(arr[Number(!lang)]);
+lang == arr[0][0]
+  ? console.log(arr[0][1])
+  : lang == arr[1][0]
+  ? console.log(arr[1][1])
+  : console.log("Ошибка ввода");
 
 // вывод должности в зависимости от имени
 
