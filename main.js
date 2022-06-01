@@ -10,7 +10,7 @@
 
 "use strict";
 
-let string = " мой дорогой друг. как твои дела? что нового";
+let string = " Мой дорогой друг, как твои дела? что нового";
 
 const checkStr = function (str) {
   if (typeof str === "string") {
