@@ -47,6 +47,10 @@ const getRollbackMessage = function (price) {
   }
 };
 
+function getFullPrice() {
+  return screenPrice + allServicePrices;
+}
+
 const getAllServicePrices = function () {
   let sum = 0;
   for (let i = 0; i < 2; i++) {
@@ -55,16 +59,12 @@ const getAllServicePrices = function () {
     } else if (i === 1) {
       servise02 = prompt("Какой дополнительный тип услуги нужен?");
     }
-
-    sum += +prompt("Сколько это будет стоить?");
-    console.log(sum);
+    do {
+      sum = prompt("Сколько это будет стоить?");
+    } while (!isNumber(sum));
   }
   return sum;
 };
-
-function getFullPrice() {
-  return screenPrice + allServicePrices;
-}
 
 const getTitle = function (nameTitle) {
   nameTitle = nameTitle.replace(/^\s/, "");
@@ -78,14 +78,14 @@ const getServicePercentPrices = function (totalPrice, percentPrice) {
 
 // блок функционала
 asking();
-showTypeOf(title);
-showTypeOf(screenPrice);
-showTypeOf(adaptive);
+allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice();
 percent = fullPrice * (rollback / 100);
 servicePercentPrice = getServicePercentPrices(fullPrice, percent);
-allServicePrices = getAllServicePrices();
 title = getTitle(title);
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
 
 // вывод в консоль
 
