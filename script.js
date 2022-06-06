@@ -20,7 +20,7 @@ const getWeek = function () {
       week[index] = week[index].bold();
       // }
     }
-    document.write(week[index]);
+    document.write(week[index] + ",");
   }
 };
 
