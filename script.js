@@ -10,18 +10,18 @@ const getWeek = function () {
     "Воскресенье",
   ];
 
-  for (index = 0; index < week.length; index++) {
-    if (index >= 5) {
+  for (let index in week) {
+    if (index >= 5)
       //вывод курсивом
       week[index] = week[index].italics();
-    }
+
     if (index + 1 == today) {
       //   // вывести жирным
       week[index] = week[index].bold();
       // }
     }
+    document.write(week[index]);
   }
-  document.write(week);
 };
 
 getWeek();
