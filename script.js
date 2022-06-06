@@ -51,15 +51,18 @@ const appData = {
 
   getAllServicePrices: function () {
     let sum = 0;
+
     for (let i = 0; i < 2; i++) {
+      let price = 0;
       if (i === 0) {
         appData.servise01 = prompt("Какой дополнительный тип услуги нужен?");
       } else if (i === 1) {
         appData.servise02 = prompt("Какой дополнительный тип услуги нужен?");
       }
       do {
-        sum = +prompt("Сколько это будет стоить?");
+        price = +prompt("Сколько это будет стоить?");
       } while (!appData.isNumber(sum));
+      sum = +sum + price;
     }
     return sum;
   },
