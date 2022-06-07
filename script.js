@@ -1,6 +1,34 @@
 "use strict";
 
 //объявление переменных
+const nameTitle = document.getElementsByTagName("h1")[0];
+console.log(title);
+const buttons = document.getElementsByClassName("handler_btn");
+console.log(buttons);
+const buttonPlus = document.querySelector(".screen-btn");
+console.log(buttonPlus);
+
+const percent = document.querySelectorAll(".other-items.percent");
+console.log(percent);
+const number = document.querySelectorAll(".other-items.number");
+console.log(number);
+
+const inputType = document.querySelector(".rollback > div> input");
+console.log(inputType);
+const span = document.querySelector(".rollback > div> span ");
+console.log(span);
+
+let totalInput = document.getElementsByClassName("total-input");
+for (let key in totalInput) {
+  let totalInputItem = {};
+  totalInputItem = totalInput[key];
+  console.log(totalInputItem);
+}
+
+// (класс total-input, получить именно элементы, а не коллекции)
+
+let screen = document.querySelectorAll(".screen");
+console.log(screen);
 
 const appData = {
   title: "",
@@ -121,4 +149,4 @@ const appData = {
   },
 };
 
-appData.start();
+// appData.start();
