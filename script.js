@@ -37,7 +37,7 @@ const appData = {
       } while (!appData.isNumber(price));
 
       // создаем массив объектов
-      appData.screens.push({ id: i, name: name, price: price });
+      appData.screens.push({ id: i, name: name + i, price: price });
     }
 
     for (let i = 0; i < 2; i++) {
@@ -57,9 +57,14 @@ const appData = {
   // рассчет стоимости экранов
 
   addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price;
-    }
+    // for (let screen of appData.screens) {
+    //   appData.screenPrice += +screen.price;
+    // }
+
+    appData.screenPrice = appData.screens.reduce((total, item) => {
+      return +total.price + item.price;
+    });
+
     for (let key in appData.servises) {
       appData.allServicePrices += +appData.servises[key];
     }
