@@ -1,5 +1,7 @@
+.italic{
+font-style: oblique;
+}
 
-.body
-{ display: flex;
-  flex-direction: column;
+.bold{
+  font-weight: bold;
 }

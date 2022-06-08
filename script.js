@@ -1,5 +1,8 @@
 const getWeek = function () {
-  let today = new Date().getDay();
+  const list = document.querySelector("ul");
+
+  console.log(list);
+  let today = new Date().getDay() - 1;
   let week = [
     "Понедельник",
     "Вторник",
@@ -11,16 +14,17 @@ const getWeek = function () {
   ];
 
   for (let index in week) {
-    if (index >= 5)
-      //вывод курсивом
-      week[index] = week[index].italics();
-
-    if (index + 1 == today) {
-      //   // вывести жирным
-      week[index] = week[index].bold();
-      // }
+    let newLi = document.createElement("li");
+    newLi.textContent = week[index];
+    list.append(newLi);
+    //вывод курсивом
+    if (index >= 5) {
+      newLi.classList.add("italic");
     }
-    document.write(week[index] + ",");
+    // вывод жирным
+    if (index == today) {
+      newLi.classList.add("bold");
+    }
   }
 };
 
