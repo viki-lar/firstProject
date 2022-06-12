@@ -25,6 +25,7 @@ let inputRange = document.querySelector("input[type=range]");
 let inputRangeSpan = document.querySelector(".range-value");
 
 let screens = document.querySelectorAll(".screen");
+let select = document.querySelector("select");
 
 const appData = {
   title: "",
@@ -42,8 +43,12 @@ const appData = {
 
   init: function () {
     appData.addTitle();
+
     button.addEventListener("click", appData.start);
+
     buttonPlus.addEventListener("click", appData.addScreenBlock);
+    appData.buttonDisable();
+    buttonPlus.addEventListener("click", appData.buttonDisable);
     inputRange.addEventListener("input", appData.addRollback);
   },
 
@@ -142,12 +147,21 @@ const appData = {
     appData.rollback = +inputRange.value;
   },
 
-  // dis: function () {
-  //   button.setAttribute("disabled", "disabled");
-  //   if (appData.screens.name || appData.screens.count) {
-  //     button.removeAttribute("disabled");
-  //   }
-  // },
+  buttonDisable: function () {
+    button.disabled = true;
+    screens = document.querySelectorAll(".screen");
+
+    screens.forEach(function (screen, index) {
+      const select = screen.querySelector("select");
+      const input = screen.querySelector("input");
+
+      screens[index].addEventListener("input", function () {
+        if (select.value && input.value) {
+          button.disabled = false;
+        }
+      });
+    });
+  },
 
   // // вывод в консоль
   // logger: function () {
