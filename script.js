@@ -47,8 +47,9 @@ const appData = {
     button.addEventListener("click", appData.start);
 
     buttonPlus.addEventListener("click", appData.addScreenBlock);
+
     appData.buttonDisable();
-    buttonPlus.addEventListener("click", appData.buttonDisable);
+
     inputRange.addEventListener("input", appData.addRollback);
   },
 
@@ -151,15 +152,27 @@ const appData = {
     button.disabled = true;
     screens = document.querySelectorAll(".screen");
 
-    screens.forEach(function (screen, index) {
+    screens.forEach(function (screen) {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
 
-      screens[index].addEventListener("input", function () {
-        if (select.value && input.value) {
-          button.disabled = false;
-        }
-      });
+      select.addEventListener("input", appData.check);
+      input.addEventListener("input", appData.check);
+    });
+  },
+
+  check: function () {
+    const mainElement = document.querySelector(".main-controls__views");
+    const select = mainElement.querySelectorAll("select");
+    const input = mainElement.querySelectorAll("input");
+    button.disabled = false;
+
+    const items = [...select, ...input];
+
+    items.forEach((item) => {
+      if (item.value == "") {
+        button.disabled = true;
+      }
     });
   },
 
