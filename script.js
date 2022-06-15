@@ -45,14 +45,24 @@ const appData = {
 
   init: function () {
     this.addTitle();
-    button.addEventListener("click", appData.start);
-    button.addEventListener("click", appData.outputDisable);
-    buttonPlus.addEventListener("click", appData.addScreenBlock);
+    button.addEventListener("click", () => {
+      this.start();
+    });
+    button.addEventListener("click", () => {
+      this.outputDisable();
+    });
+    buttonPlus.addEventListener("click", () => {
+      this.addScreenBlock();
+    });
 
     this.buttonDisable();
 
-    inputRange.addEventListener("input", appData.addRollback);
-    btnReset.addEventListener("click", appData.reset);
+    inputRange.addEventListener("input", () => {
+      this.addRollback();
+    });
+    btnReset.addEventListener("click", () => {
+      this.reset();
+    });
   },
 
   addTitle: function () {
@@ -60,21 +70,63 @@ const appData = {
   },
 
   start: function () {
-    appData.addScreens();
-    appData.addServises();
-    appData.addPrices();
-    appData.showResult();
-    console.log(appData);
+    console.log(this);
+    this.addScreens();
+    this.addServises();
+    this.addPrices();
+    this.showResult();
 
     // appData.logger();
   },
 
   reset: function () {
+    // блокировка элементов
     const input = document.querySelectorAll("input");
-    const allInput = [...input, buttonPlus];
+    const select = document.querySelectorAll("select");
+    const allInput = [...input, ...select, buttonPlus];
     allInput.forEach((item) => {
       item.disabled = false;
     });
+
+    // обнуление элементов
+    screens = document.querySelectorAll(".screen");
+    screens.forEach((screen, index) => {
+      const select = screen.querySelector("select");
+      const input = screen.querySelector("input");
+      let selectName = select.options[select.selectedIndex].textContent;
+      input.value = 0;
+      select.value = "";
+      console.log(select.options[0]);
+    });
+
+    percent.forEach((item) => {
+      const check = item.querySelector("input[type=checkbox]");
+      check.checked = false;
+    });
+
+    number.forEach((item) => {
+      const check = item.querySelector("input[type=checkbox]");
+      check.checked = false;
+    });
+
+    inputRangeSpan.textContent = 0;
+    inputRange.value = 0;
+
+    this.screens = [];
+    this.count = 0;
+    this.screenPrice = 0;
+    this.adaptive = true;
+    this.fullPrice = 0;
+    this.rollback = 0;
+    this.servicePercentPrice = 0;
+    this.servicePricePercent = 0;
+    this.servicePriceNumber = 0;
+    this.servisesPercent = {};
+    this.servisesNumber = {};
+
+    this.showResult();
+
+    // смена кнопок
     button.setAttribute("style", "");
     btnReset.setAttribute("style", "display: none");
   },
@@ -155,9 +207,11 @@ const appData = {
 
   addRollback: function () {
     inputRangeSpan.textContent = inputRange.value;
-    appData.rollback = +inputRange.value;
+
+    this.rollback = +inputRange.value;
   },
 
+  // блокировка кнопки
   buttonDisable: function () {
     button.disabled = true;
     screens = document.querySelectorAll(".screen");
@@ -166,8 +220,12 @@ const appData = {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
 
-      select.addEventListener("input", appData.check);
-      input.addEventListener("input", appData.check);
+      select.addEventListener("input", () => {
+        this.check();
+      });
+      input.addEventListener("input", () => {
+        this.check();
+      });
     });
   },
 
@@ -186,9 +244,12 @@ const appData = {
     });
   },
 
+  // блокировка данных
   outputDisable: function () {
     const input = document.querySelectorAll("input");
-    const allInput = [...input, buttonPlus];
+
+    const select = document.querySelectorAll("select");
+    const allInput = [...input, ...select, buttonPlus];
     allInput.forEach((item) => {
       item.disabled = true;
     });
