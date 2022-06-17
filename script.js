@@ -45,24 +45,14 @@ const appData = {
 
   init: function () {
     this.addTitle();
-    button.addEventListener("click", () => {
-      this.start();
-    });
-    button.addEventListener("click", () => {
-      this.outputDisable();
-    });
-    buttonPlus.addEventListener("click", () => {
-      this.addScreenBlock();
-    });
+    button.addEventListener("click", this.start.bind(this));
+    button.addEventListener("click", this.outputDisable.bind(this));
+    buttonPlus.addEventListener("click", this.addScreenBlock.bind(this));
 
     this.buttonDisable();
 
-    inputRange.addEventListener("input", () => {
-      this.addRollback();
-    });
-    btnReset.addEventListener("click", () => {
-      this.reset();
-    });
+    inputRange.addEventListener("input", this.addRollback.bind(this));
+    btnReset.addEventListener("click", this.reset.bind(this));
   },
 
   addTitle: function () {
@@ -220,12 +210,8 @@ const appData = {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
 
-      select.addEventListener("input", () => {
-        this.check();
-      });
-      input.addEventListener("input", () => {
-        this.check();
-      });
+      select.addEventListener("input", this.check.bind(this));
+      input.addEventListener("input", this.check.bind(this));
     });
   },
 
